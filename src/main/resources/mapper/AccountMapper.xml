@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        <mapper namespace="com.example.wyh.dao.AccountDao">
+
+    <!-- 动态条件查询 -->
+    <select resultType="Account" parameterType="Account" id="searchAllAccount">
+    SELECT * FROM account
+
+    <where>
+
+    <if test=" id !=null and id !='' ">and id=#{id} </if>
+
+    <if test=" name !=null and name !='' ">and name=#{name} </if>
+
+    <if test=" money !=null and money !='' ">and money=#{money} </if>
+
+  </where>
+
+  </select>
+
+    <select resultType="Account" parameterType="java.lang.Integer" id="searchById">
+      select * from account where id=#{id}
+    </select>
+    <!--<insert parameterType="Account" id="addUser">
+    insert into user
+
+    <trim suffixOverrides="," suffix=")" prefix="(">
+
+    <if test=" userName !=null and userName !='' ">userName, </if>
+
+    <if test=" password !=null and password !='' ">password, </if>
+
+    <if test=" roleId !=null and roleId !='' ">roleId, </if>
+
+</trim>
+
+
+    <trim suffixOverrides="," suffix=")" prefix="values(">
+
+    <if test=" userName !=null and userName !='' ">#{userName}, </if>
+
+    <if test=" password !=null and password !='' ">#{password}, </if>
+
+    <if test=" roleId !=null and roleId !='' ">#{roleId}, </if>
+
+</trim>
+
+</insert>
+
+
+    <update parameterType="Account" id="updateUser">
+    update user set
+
+    <trim suffixOverrides=",">
+
+    <if test=" id !=null and id !='' ">id=#{id}, </if>
+
+    <if test=" userName !=null and userName !='' ">userName=#{userName}, </if>
+
+    <if test=" password !=null and password !='' ">password=#{password}, </if>
+
+    <if test=" roleId !=null and roleId !='' ">roleId=#{roleId}, </if>
+
+</trim>
+    where id=#{id}
+</update>
+
+    <delete parameterType="int" id="removeUserById">delete from user where id=#{id} </delete>
+-->
+
+</mapper>

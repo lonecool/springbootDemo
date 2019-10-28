@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>account列表</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>账户编号</th>
+        <th>账户姓名</th>
+        <th>账户余额</th>
+    </tr>
+    <tr th:each="item,accountStat : ${accountList}">
+        <td><input type="text" th:value="${item.id}"><td>
+        <td><input type="text" th:value="${item.name}"><td>
+        <td><input type="text" th:value="${item.money}"><td>
+        <td><a th:href="@{'/thymeleaf/goUpdate'}">修改</a>&nbsp;&nbsp;<a th:href="@{'/thymeleaf/deleteById/'+${item.id}}">删除</a></td>
+    </tr>
+    <tr><a th:href="@{'/thymeleaf/goAdd'}">添加</a></tr>
+</table>
+</body>
+</html>
