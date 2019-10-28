@@ -20,10 +20,10 @@ public class ThymeleafController {
     @Autowired
     AccountService accountService;
 
-    @GetMapping("/{pageNum}/{pageSize}")
+    @GetMapping("/accountList/{pageNum}/{pageSize}")
     public String searchAll(Model model, @PathVariable("pageNum")int pageNum,@PathVariable("pageSize")int pageSize,PageParam<Account> pageParam,Account account){
-        pageParam.setPageNum(pageNum);
-        pageParam.setPageSize(pageSize);
+//        pageParam.setPageNum(pageNum);
+//        pageParam.setPageSize(pageSize);
         pageParam.setOrderParams(new String[]{});
         PageHelper.startPage(pageNum, pageSize);
         List<Account> accountList = accountService.searchAllAccount(account);
@@ -32,10 +32,10 @@ public class ThymeleafController {
         return "accountList";
     }
 
-    @PostMapping("/deleteById/{id}")
+    @GetMapping("/deleteById/{id}")
     public String deleteById(@PathVariable("id") Integer id){
         accountService.delete(id);
-        return "redirect:/accountList";
+        return "redirect:/thymeleaf/accountList/1/3";
     }
 
     @RequestMapping("/goAdd")
@@ -44,21 +44,22 @@ public class ThymeleafController {
     }
 
     @PostMapping("/addAccount")
-    public String addAccount(@RequestBody Account account){
+    public String addAccount(Account account,Model model){
         accountService.insert(account);
-        return "redirect:/accountList";
+       // model.addAttribute("accountList",accountService.searchAllAccount(account));
+        return "redirect:/thymeleaf/accountList/1/3";
     }
 
-    @RequestMapping("/goUpdate")
-    public String goUpdate(Model model, Integer id){
+    @RequestMapping("/goUpdate/{id}")
+    public String goUpdate(Model model, @PathVariable("id") Integer id){
         Account account = accountService.searchById(id);
         model.addAttribute("account", account);
         return "updateAccount";
     }
 
-    @PutMapping("/updateAccount")
+    @PostMapping("/updateAccount")
     public String updateAccount(Account account){
         accountService.update(account);
-        return "redirect:/accountList";
+        return "redirect:/thymeleaf/accountList/1/3";
     }
 }

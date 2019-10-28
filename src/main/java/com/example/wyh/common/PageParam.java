@@ -19,4 +19,15 @@ public class PageParam<Model> {
 
     @ApiModelProperty(value = "每页记录条数",name = "pageSize")
     private int pageSize;
+
+    public static PageParam init(int pageNum,int pageSize){
+        PageParam pageParam = new PageParam();
+
+
+        pageParam.setPageNum(pageNum);
+        pageParam.setPageSize(pageSize);
+        pageParam.setOrderParams(new String[]{});
+
+        return pageParam;
+    }
 }

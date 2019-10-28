@@ -18,7 +18,7 @@ public interface AccountDao {
    /*@Select("select * from account")*/
    List<Account> searchAllAccount(Account account);
 
-   @Update("update account set name=#{name} where id=#{id}")
+   @Update("update account set name=#{name},money=#{money} where id=#{id}")
    int updateAccount(Account account);
 
 

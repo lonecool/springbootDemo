@@ -5,11 +5,11 @@
     <title>Title</title>
 </head>
 <body>
-<form th:action="@{'/thymeleaf/addAccount'}" th:method="post">
-    账户ID:<input type="text" name="aId" />
-    姓名:<input type="text" name="aName" />
-    金额:<input type="text" name="aMoney" />
-    <input type="submit" value="submit" />
+<form th:action="@{'/thymeleaf/addAccount'}" th:method="post" >
+    账户ID:<input type="text" name="Id" hidden/>
+    姓名:<input type="text" name="Name" />
+    金额:<input type="text" name="Money" />
+    <input type="submit" value="提交" />
 </form>
 </body>
 </html>
